@@ -1,8 +1,13 @@
 "use client";
 import classNames from 'classnames';
+import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 
-export default function Start() {
+interface StartProps {
+    onMenuClick: (menu: string) => void;
+}
+
+const Start: React.FC<StartProps> = ({ onMenuClick }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
     const [isOpen, setIsOpen] = useState(false);
@@ -36,22 +41,22 @@ export default function Start() {
 
     const handleClickOutside = (event: MouseEvent) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-          setIsOpen(false);
+            setIsOpen(false);
         }
-      };
+    };
 
-    
-      useEffect(() => {
+
+    useEffect(() => {
         if (isOpen) {
-          document.addEventListener('mousedown', handleClickOutside);
+            document.addEventListener('mousedown', handleClickOutside);
         } else {
-          document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         }
-    
+
         return () => {
-          document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', handleClickOutside);
         };
-      }, [isOpen]);
+    }, [isOpen]);
 
     return (
         <div className="w-full bg-inherit flex justify-between items-center align-middle border-b border-black h-6 text-xs font-bold">
@@ -78,7 +83,8 @@ export default function Start() {
                     <div className="absolute left-0 w-40">
                         <ul className="background-fix border-r border-b border-black">
                             <li>
-                                <a href="#" className="hover:bg-black hover:text-white block py-1 px-4 text-black text-left border-b border-black">
+                                <a href="#" className="hover:bg-black hover:text-white block py-1 px-4 text-black text-left border-b border-black"
+                                    onClick={() => onMenuClick('about')}>
                                     About
                                 </a>
                             </li>
@@ -103,3 +109,5 @@ export default function Start() {
         </div>
     );
 }
+
+export default Start;
