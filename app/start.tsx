@@ -83,15 +83,20 @@ export default function Start() {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className="hover:bg-black hover:text-white block py-1 px-4 text-black text-left">
+                                <a href="#" className="hover:bg-black hover:text-white block py-1 px-4 text-black text-left border-b border-black">
                                     Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" className="hover:bg-black hover:text-white block py-1 px-4 text-black text-left">
+                                    Game
                                 </a>
                             </li>
                         </ul>
                     </div>
                 )}
             </div>
-            <div className="flex">
+            <div className="flex cursor-default">
                 <p className="border-black border-r border-l px-2 fix-line-height">{formatTime(currentTime)}</p>
                 <p className="fix-line-height px-2">{formatDate(currentTime)}</p>
             </div>
