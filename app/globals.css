@@ -35,3 +35,7 @@ body {
 .fix-line-height {
   line-height: 2em;
 }
+
+.background-fix {
+  background-color: rgb(var(--background-start-rgb))
+}
