@@ -2,6 +2,7 @@
 import { ReactElement, useState } from "react";
 import DraggableWindow from "./components/draggableWindow";
 import Start from "./components/start";
+import About from "./components/windows/about";
 
 export default function Home() {
 
@@ -21,7 +22,7 @@ export default function Home() {
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen ? (
           <DraggableWindow title="About" onClose={() => setIsAboutOpen(false)} onHide={() => setIsAboutHidden(true)}>
-            <div>Hello in about section</div>
+            <About />
           </DraggableWindow>
         ) : (
           ''

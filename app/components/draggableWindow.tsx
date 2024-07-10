@@ -71,7 +71,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, onClose, onHid
   return (
     <div
       ref={windowRef}
-      className="fixed top-20 left-20 w-96 background-fix shadow-lg"
+      className="fixed top-20 left-20 w-96 background-fix shadow-lg select-none"
       style={{ zIndex: 1000 }}
     >
       <div
@@ -114,7 +114,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, onClose, onHid
         </div>
         <span className='text-xs'>{title}</span>
       </div>
-      <div className="p-4 background-fix border-b border-l border-r border-black">{children}</div>
+      <div className="p-2 background-fix border-b border-l border-r border-black">{children}</div>
     </div>
   );
 };

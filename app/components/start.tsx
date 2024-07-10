@@ -59,7 +59,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick }) => {
     }, [isOpen]);
 
     return (
-        <div className="w-full bg-inherit flex justify-between items-center align-middle border-b border-black h-6 text-xs font-bold">
+        <div className="w-full bg-inherit flex justify-between items-center align-middle border-b border-black h-6 text-xs font-bold select-none">
             <div className="text-center cursor-pointer">
                 <button className={classNames(
                     'border-black border-r w-20 flex items-center px-3 hover:bg-black hover:text-white',
