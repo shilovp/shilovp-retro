@@ -1,0 +1,11 @@
+$min-height: 50px;
+$max-height: 150px;
+$total-spans: 12;
+
+div.window-cap {
+  @for $i from 1 through $total-spans {
+    span:nth-child(#{$i}) {
+      height: random-height($min-height, $max-height);
+    }
+  }
+}

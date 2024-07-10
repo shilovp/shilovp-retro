@@ -4,10 +4,11 @@ import { useRef, useState, useEffect } from 'react';
 interface DraggableWindowProps {
   title: string;
   onClose: () => void;
+  onHide: () => void;
   children: React.ReactNode;
 }
 
-const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, onClose, children }) => {
+const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, onClose, onHide, children }) => {
   const windowRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -74,18 +75,44 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, onClose, child
       style={{ zIndex: 1000 }}
     >
       <div
-        className="background-fix text-black flex justify-between items-center cursor-move h-6 border border-black p-3"
+        className="background-fix text-black flex justify-between items-center cursor-move border border-black px-1 h-6"
         onMouseDown={handleMouseDown}
       >
         <div>
-          <button onClick={onClose} className="text-black text-xs border border-black w-4 h-4 mr-1 hover:bg-black hover:text-white hover:border-gray-800">
+          <button onClick={onClose} className="text-black text-xs border border-black w-4 h-4 mr-1 hover:bg-black hover:text-white hover:border-white">
             <p className='rotate-45'>+</p>
           </button>
-          <button onClick={onClose} className="text-black text-xs border border-black w-4 h-4 hover:bg-black hover:text-white hover:border-gray-800">
+          <button onClick={onHide} className="text-black text-xs border border-black w-4 h-4 hover:bg-black hover:text-white hover:border-white">
             <p>_</p>
           </button>
         </div>
-        <span className='text-xs'>Testing</span>
+        <div className='text-gray-400 text-opacity-50'>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+          <span>|</span>
+        </div>
+        <span className='text-xs'>{title}</span>
       </div>
       <div className="p-4 background-fix border-b border-l border-r border-black">{children}</div>
     </div>

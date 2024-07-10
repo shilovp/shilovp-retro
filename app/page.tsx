@@ -1,33 +1,31 @@
 "use client";
-import { useState } from "react";
-import DraggableWindow from "./draggableWindow";
-import Start from "./start";
+import { ReactElement, useState } from "react";
+import DraggableWindow from "./components/draggableWindow";
+import Start from "./components/start";
 
 export default function Home() {
 
   const [isAboutOpen, setIsAboutOpen] = useState(false);
-
-  const openAboutWindow = () => {
-    setIsAboutOpen(true);
-  };
-
-  const closeAboutWindow = () => {
-    setIsAboutOpen(false);
-  };
+  const [isAboutHidden, setIsAboutHidden] = useState(false);
 
   const onStartMenuClick = (menu: string) => {
     if (menu === 'about') {
-      console.log('opening about');
+      setIsAboutOpen(true);
+      console.log('opening about: ', isAboutOpen);
     }
   }
 
-
-
   return (
     <main className="flex flex-col min-h-screen w-full font-chicago h-screen">
-      <Start onMenuClick={onStartMenuClick}/>
+      <Start onMenuClick={onStartMenuClick} />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
-      <DraggableWindow />
+        {isAboutOpen ? (
+          <DraggableWindow title="About" onClose={() => setIsAboutOpen(false)} onHide={() => setIsAboutHidden(true)}>
+            <div>Hello in about section</div>
+          </DraggableWindow>
+        ) : (
+          ''
+        )}
       </div>
     </main>
   );
