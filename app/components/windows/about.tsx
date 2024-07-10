@@ -2,8 +2,7 @@ const About: React.FC<{}> = () => {
 
     return (
         <div className="p-2 border border-black bg-white select-text">
-            <h3>Hello,</h3>
-            <h2>my name is Pavel.</h2>
+            <h2>I am Pavel</h2>
             <p className="text-sm mt-4">
                 I am enthusiastic IT guy who currently working in international fintech company and constantly evolving his programming and manager skills.
             </p>
@@ -22,6 +21,10 @@ const About: React.FC<{}> = () => {
             <p className="text-sm mt-2">
                 For business inqueries contact me on <a className="text-blue-600" href="mailto:pavel.shilov@protonmail.com">pavel.shilov@protonmail.com</a>
             </p>
+            <p className="text-sm mt-2">Links:</p>
+            <div>
+                
+            </div>
         </div>
     );
 }
