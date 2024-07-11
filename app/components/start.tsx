@@ -110,7 +110,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showAboutIcon ? (
                         <div
-                            className={`${isAboutHidden ? "cursor-pointer" : "cursor-auto"} relative h-5 w-5 bg-gray-500 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isAboutHidden ? "cursor-pointer" : "cursor-auto"} ${isAboutHidden ? "bg-opacity-50" : "bg-opacity-100"} relative h-5 w-5 bg-green-900 rounded-full flex place-content-center place-items-center text-white transition-transform`}
                             onClick={() => {
                                 if (!isAboutHidden) { return } else { onMenuClick('about') }
                             }}>
@@ -128,7 +128,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showSettingsIcon ? (
                         <div
-                            className={`${isAboutHidden ? "cursor-pointer" : "cursor-auto"} relative h-5 w-5 bg-slate-700 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isSettingHidden ? "cursor-pointer" : "cursor-auto"} ${isSettingHidden ? "bg-opacity-50" : "bg-opacity-100"} relative h-5 w-5 bg-cyan-700 rounded-full flex place-content-center place-items-center text-white transition-transform`}
                             onClick={() => {
                                 if (!isSettingHidden) { return } else { onMenuClick('settings') }
                             }}>
