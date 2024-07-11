@@ -5,11 +5,14 @@ import { useState, useEffect, useRef } from 'react';
 
 interface StartProps {
     onMenuClick: (menu: string) => void;
+    showAboutIcon: boolean;
+    isAboutHidden: boolean;
+    showSettingsIcon: boolean;
+    isSettingHidden: boolean;
 }
 
-const Start: React.FC<StartProps> = ({ onMenuClick }) => {
+const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
-
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
@@ -59,7 +62,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick }) => {
     }, [isOpen]);
 
     return (
-        <div className="w-full bg-inherit flex justify-between items-center align-middle border-b border-black h-6 text-xs font-bold select-none">
+        <div className="w-full bg-inherit flex items-center align-middle border-b border-black h-8 text-xs font-bold select-none">
             <div className="text-center cursor-pointer">
                 <button className={classNames(
                     'border-black border-r w-20 flex items-center px-3 hover:bg-black hover:text-white',
@@ -103,7 +106,45 @@ const Start: React.FC<StartProps> = ({ onMenuClick }) => {
                     </div>
                 )}
             </div>
-            <div className="flex cursor-default">
+            <div className='flex gap-5 px-10'>
+                {
+                    showAboutIcon ? (
+                        <div
+                            className={`${isAboutHidden ? "cursor-pointer" : "cursor-auto"} relative h-5 w-5 bg-gray-500 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isAboutHidden) { return } else { onMenuClick('about') }
+                            }}>
+                            <p>A</p>
+                            {
+                                isAboutHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showSettingsIcon ? (
+                        <div
+                            className={`${isAboutHidden ? "cursor-pointer" : "cursor-auto"} relative h-5 w-5 bg-slate-700 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isSettingHidden) { return } else { onMenuClick('settings') }
+                            }}>
+                            <p>S</p>
+                            {
+                                isSettingHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+            </div>
+            <div className="flex cursor-default justify-end w-full">
                 <p className="border-black border-r border-l px-2 fix-line-height">{formatTime(currentTime)}</p>
                 <p className="fix-line-height px-2">{formatDate(currentTime)}</p>
             </div>

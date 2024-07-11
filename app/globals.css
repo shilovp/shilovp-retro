@@ -39,3 +39,9 @@ body {
 .background-fix {
   background-color: rgb(var(--background-start-rgb))
 }
+
+.dot-fix {
+  bottom: 3px;
+  right: -3px;
+  font-size: 32px;
+}
