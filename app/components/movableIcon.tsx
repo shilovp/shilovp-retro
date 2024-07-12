@@ -4,12 +4,13 @@ interface MovableIconProps {
     icon: string;
     label: string;
     onDoubleClick: () => void;
+    initialPosition: {x: number, y: number}
 }
 
-const MovableIcon: React.FC<MovableIconProps> = ({ icon, label, onDoubleClick }) => {
+const MovableIcon: React.FC<MovableIconProps> = ({ icon, label, initialPosition, onDoubleClick }) => {
     const iconRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
-    const [position, setPosition] = useState({ x: 25, y: 70 }); // Initial position
+    const [position, setPosition] = useState({ x: initialPosition.x, y: initialPosition.y }); // Initial position
     const [offset, setOffset] = useState({ x: 0, y: 0 });
 
     const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -70,8 +71,8 @@ const MovableIcon: React.FC<MovableIconProps> = ({ icon, label, onDoubleClick })
             onDoubleClick={onDoubleClick}
             style={{ left: `${position.x}px`, top: `${position.y}px` }}
         >
-            <img src={icon} alt={label} className="w-12 h-12 pointer-events-none rounded-lg" />
-            <span className="text-gray-800 text-xs mt-2">{label}</span>
+            <img src={icon} alt={label} className="w-10 h-10 pointer-events-none rounded-lg" />
+            <span className="text-gray-800 text-xs mt-1">{label}</span>
         </div>
     );
 };

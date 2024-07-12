@@ -47,6 +47,19 @@ export default function Home() {
         <MovableIcon
           icon={'./play.jpg'}
           label="Music"
+          initialPosition={{x: 25, y: 70}}
+          onDoubleClick={() => { }}
+        />
+        <MovableIcon
+          icon={'./play.jpg'}
+          label="Music"
+          initialPosition={{x: 90, y: 70}}
+          onDoubleClick={() => { }}
+        />
+        <MovableIcon
+          icon={'./play.jpg'}
+          label="Music"
+          initialPosition={{x: 155, y: 70}}
           onDoubleClick={() => { }}
         />
       </div>
