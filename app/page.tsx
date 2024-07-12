@@ -3,7 +3,7 @@ import { useState } from "react";
 import DraggableWindow from "./components/draggableWindow";
 import Start from "./components/start";
 import About from "./components/windows/about";
-import QuickPanel from "./components/quickPanel";
+import MovableIcon from "./components/movableIcon";
 
 export default function Home() {
 
@@ -44,6 +44,11 @@ export default function Home() {
         ) : (
           ''
         )}
+        <MovableIcon
+          icon={'./play.jpg'}
+          label="Music"
+          onDoubleClick={() => { }}
+        />
       </div>
     </main>
   );
