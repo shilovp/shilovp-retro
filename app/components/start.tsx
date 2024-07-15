@@ -9,9 +9,13 @@ interface StartProps {
     isAboutHidden: boolean;
     showSettingsIcon: boolean;
     isSettingHidden: boolean;
+    isMusicPlayerHidden: boolean;
+    showMusicPlayerIcon: boolean;
 }
 
-const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon }) => {
+const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
+    showMusicPlayerIcon, isMusicPlayerHidden
+}) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
 
@@ -62,7 +66,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
     }, [isOpen]);
 
     return (
-        <div className="w-full bg-inherit flex items-center align-middle border-b border-black h-8 text-xs font-bold select-none">
+        <div className="w-full bg-inherit flex items-center align-middle border-b border-black h-9 text-xs font-bold select-none">
             <div className="text-center cursor-pointer z-50">
                 <button className={classNames(
                     'border-black border-r w-20 flex items-center px-3 hover:bg-black hover:text-white',
@@ -107,6 +111,24 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 )}
             </div>
             <div className='flex gap-5 px-10'>
+                {
+                    showMusicPlayerIcon ? (
+                        <div
+                            className={`${isMusicPlayerHidden ? "cursor-pointer" : "cursor-auto"} ${isMusicPlayerHidden ? "opacity-80" : "opacity-100"} relative h-5 w-5 bg-green-900 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isMusicPlayerHidden) { return } else { onMenuClick('musicPlayer') }
+                            }}>
+                            <img src="../play.jpg" width={20} height={20} alt="player" className='rounded-xl' />
+                            {
+                                isMusicPlayerHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
                 {
                     showAboutIcon ? (
                         <div

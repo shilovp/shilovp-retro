@@ -5,6 +5,7 @@ import Start from "./components/start";
 import About from "./components/windows/about";
 import MovableIcon from "./components/movableIcon";
 import MusicPlayer from "./components/windows/musicPlayer";
+import DraggablePlayer from "./components/draggablePlayer";
 
 export default function Home() {
 
@@ -19,19 +20,21 @@ export default function Home() {
     if (menu === 'about') {
       setIsAboutOpen(true);
       setIsAboutHidden(false);
-      console.log('opening about: ', isAboutOpen);
     }
     if (menu === 'settings') {
       setIsSettingsOpen(true);
       setIsSettingsHidden(false);
-      console.log('opening settings');
+    }
+    if (menu === 'musicPlayer') {
+      setIsMusicPlayerOpen(true);
+      setIsMusicPlayerHidden(false);
     }
   }
 
   return (
     <main className="flex flex-col min-h-screen w-full font-chicago h-screen">
       <Start onMenuClick={onStartMenuClick} showAboutIcon={isAboutOpen} isAboutHidden={isAboutHidden}
-        showSettingsIcon={isSettingsOpen} isSettingHidden={isSettingsHidden} />
+        showSettingsIcon={isSettingsOpen} isSettingHidden={isSettingsHidden} isMusicPlayerHidden={isMusicPlayerHidden} showMusicPlayerIcon={isMusicPlayerOpen} />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen && !isAboutHidden ? (
           <DraggableWindow title="About" onClose={() => { setIsAboutOpen(false); setIsAboutHidden(false) }} onHide={() => setIsAboutHidden(true)}>
@@ -48,10 +51,11 @@ export default function Home() {
           ''
         )}
         {isMusicPlayerOpen && !isMusicPlayerHidden ? (
-          <DraggableWindow title="Music player" onClose={() => { setIsMusicPlayerOpen(false); setIsMusicPlayerHidden(false) }} onHide={() => setIsSettingsHidden(true)}>
-            <MusicPlayer></MusicPlayer>
-          </DraggableWindow>
-          // Use special separate component here for music player
+          <DraggablePlayer onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }}>
+          </DraggablePlayer>
+          // <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Player">
+          //   <MusicPlayer></MusicPlayer>
+          // </DraggableWindow>
         ) : (
           ''
         )}
@@ -62,17 +66,17 @@ export default function Home() {
           onDoubleClick={() => { setIsMusicPlayerOpen(true); setIsMusicPlayerHidden(false) }}
         />
         {/* <MovableIcon
-          icon={'./play.jpg'}
-          label="Music"
-          initialPosition={{ x: 90, y: 70 }}
-          onDoubleClick={() => { }}
-        />
-        <MovableIcon
-          icon={'./play.jpg'}
-          label="Music"
-          initialPosition={{ x: 155, y: 70 }}
-          onDoubleClick={() => { }}
-        /> */}
+            icon={'./play.jpg'}
+            label="Music"
+            initialPosition={{ x: 90, y: 70 }}
+            onDoubleClick={() => { }}
+          />
+          <MovableIcon
+            icon={'./play.jpg'}
+            label="Music"
+            initialPosition={{ x: 155, y: 70 }}
+            onDoubleClick={() => { }}
+          /> */}
       </div>
     </main>
   );
