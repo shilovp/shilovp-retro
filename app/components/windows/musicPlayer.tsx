@@ -52,7 +52,7 @@ const About: React.FC<{}> = () => {
         if (volumeBarRef.current && audioRef.current) {
             const rect = volumeBarRef.current.getBoundingClientRect();
             const clickX = e.clientX - rect.left;
-            const newVolume = clickX / rect.width; // volume ranges from 0.0 (left) to 1.0 (right)
+            const newVolume = clickX / rect.width;
             audioRef.current.volume = newVolume;
             setVolume(newVolume);
         }

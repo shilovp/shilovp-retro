@@ -11,10 +11,12 @@ interface StartProps {
     isSettingHidden: boolean;
     isMusicPlayerHidden: boolean;
     showMusicPlayerIcon: boolean;
+    showCreditsIcon: boolean;
+    isCreditsHidden: boolean;
 }
 
 const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
-    showMusicPlayerIcon, isMusicPlayerHidden
+    showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden
 }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
@@ -118,9 +120,27 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                             onClick={() => {
                                 if (!isMusicPlayerHidden) { return } else { onMenuClick('musicPlayer') }
                             }}>
-                            <img src="../play.jpg" width={20} height={20} alt="player" className='rounded-xl' />
+                            <img src="../player.png" width={20} height={20} alt="player" className='rounded-xl' />
                             {
                                 isMusicPlayerHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showCreditsIcon ? (
+                        <div
+                            className={`${isCreditsHidden ? "cursor-pointer" : "cursor-auto"} ${isCreditsHidden ? "opacity-80" : "opacity-100"} relative h-5 w-5 bg-green-900 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isCreditsHidden) { return } else { onMenuClick('credits') }
+                            }}>
+                            <img src="../credits.png" width={20} height={20} alt="credits" className='rounded-xl' />
+                            {
+                                isCreditsHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
                                 ) : ('')
                             }
