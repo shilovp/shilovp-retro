@@ -9,6 +9,7 @@ const About: React.FC<{}> = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [volume, setVolume] = useState(0.7);
     const [duration, setDuration] = useState(0);
+
     const togglePlayPause = () => {
         if (isPlaying) {
             audioRef.current?.pause();
@@ -60,31 +61,27 @@ const About: React.FC<{}> = () => {
 
 
     return (
-        <div className="flex flex-col p-3 background-fix ">
-            <div className=" border-violet-500 border bg-blue-900 p-1 text-blue-400">
+        <div className="flex flex-col p-1 background-fix ">
+            <div className=" border-violet-500 border bg-blue-900 p-1 text-blue-400 mb-4">
                 <p>State of Decay 2 Trailer Song METALIZED!! - Jesper Kyd</p>
+
                 {
                     isPlaying ? (
                         <p className="text-xs mt-4">Playing ... </p>
+
                     ) : (
                         <p className="text-xs mt-4"> / / / / Player paused</p>
+                        // equalizer will be added later
                     )
                 }
             </div>
-            <div className="flex justify-between items-center my-4 w-full px-20">
-                <button onClick={handleBackward} className="focus:outline-none">
-                    <FaBackward />
-                </button>
-                <button onClick={togglePlayPause} className="focus:outline-none">
-                    {isPlaying ? <FaPause /> : <FaPlay />}
-                </button>
-                <button onClick={handleForward} className="focus:outline-none">
-                    <FaForward />
-                </button>
+            <div className="flex justify-between text-xs mb-1 px-1">
+                <span>{new Date(currentTime * 1000).toISOString().substr(14, 5)}</span>
+                <span>{new Date((duration - currentTime) * 1000).toISOString().substr(14, 5)}</span>
             </div>
             <div
                 ref={progressBarRef}
-                className="w-full bg-blue-900 rounded-full h-2 mb-4 relative cursor-pointer"
+                className="w-full bg-blue-900 rounded-full h-2 relative cursor-pointer"
                 onClick={handleProgressBarClick}
             >
                 <div
@@ -98,21 +95,33 @@ const About: React.FC<{}> = () => {
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
             ></audio>
-            <div className="flex justify-between text-xs">
-                <span>{new Date(currentTime * 1000).toISOString().substr(14, 5)}</span>
-                <span>{new Date((duration - currentTime) * 1000).toISOString().substr(14, 5)}</span>
-            </div>
-            <div className="flex items-end mt-2 ml-auto">
-                <FaVolumeUp className='pt-4 h-6' />
-                <div
-                    ref={volumeBarRef}
-                    className="w-20 h-1 bg-blue-900 rounded-full ml-1 relative cursor-pointer pb-2"
-                    onClick={handleVolumeBarClick}
-                >
-                    <div
-                        className="bg-blue-500 h-1 rounded-full absolute pb-2"
-                        style={{ width: `${volume * 100}%` }}
-                    ></div>
+
+            <div className="flex justify-between items-center w-full h-10">
+                <div className='flex gap-2'>
+                    <button onClick={handleBackward} className="focus:outline-none">
+                        <FaBackward size={15} />
+                    </button>
+                    <button onClick={togglePlayPause} className="focus:outline-none">
+                        {isPlaying ? <FaPause /> : <FaPlay />}
+                    </button>
+                    <button onClick={handleForward} className="focus:outline-none">
+                        <FaForward size={15} />
+                    </button>
+                </div>
+                <div>
+                    <div className="flex place-items-center place-content-center">
+                        <FaVolumeUp className='' />
+                        <div
+                            ref={volumeBarRef}
+                            className="w-20 h-1 bg-blue-900 rounded-full ml-1 relative cursor-pointer pb-2"
+                            onClick={handleVolumeBarClick}
+                        >
+                            <div
+                                className="bg-blue-500 h-1 rounded-full absolute pb-2"
+                                style={{ width: `${volume * 100}%` }}
+                            ></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

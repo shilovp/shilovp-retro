@@ -51,11 +51,11 @@ export default function Home() {
           ''
         )}
         {isMusicPlayerOpen && !isMusicPlayerHidden ? (
-          <DraggablePlayer onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }}>
-          </DraggablePlayer>
-          // <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Player">
-          //   <MusicPlayer></MusicPlayer>
-          // </DraggableWindow>
+          // <DraggablePlayer onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }}>
+          // </DraggablePlayer>
+          <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Music player">
+            <MusicPlayer></MusicPlayer>
+          </DraggableWindow>
         ) : (
           ''
         )}
