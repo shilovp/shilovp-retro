@@ -5,7 +5,7 @@ import Start from "./components/start";
 import About from "./components/windows/about";
 import MovableIcon from "./components/movableIcon";
 import MusicPlayer from "./components/windows/musicPlayer";
-import DraggablePlayer from "./components/draggablePlayer";
+// import DraggablePlayer from "./components/draggablePlayer";
 import Credits from "./components/windows/credits";
 import MusicFolder from "./components/windows/musicFolder";
 
@@ -21,6 +21,7 @@ export default function Home() {
   const [isCreditsHidden, setIsCreditsHidden] = useState(false);
   const [isMusicFolderOpen, setIsMusicFolderOpen] = useState(false);
   const [isMusicFolderHidden, setIsMusicFolderHidden] = useState(false);
+  const [currentTrack, setCurrentTrack] = useState(0);
 
   const onStartMenuClick = (menu: string) => {
     if (menu === 'about') {
@@ -77,18 +78,18 @@ export default function Home() {
         ) : (
           ''
         )}
-        {isMusicPlayerOpen && !isMusicPlayerHidden ? (
-          // <DraggablePlayer onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }}>
-          // </DraggablePlayer>
-          <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Player">
-            <MusicPlayer track='../sample.mp3' />
+        {isMusicFolderOpen && !isMusicFolderHidden ? (
+          <DraggableWindow title="Desktop/music" onClose={() => { setIsMusicFolderOpen(false); setIsMusicFolderHidden(false) }} onHide={() => setIsMusicFolderHidden(true)}>
+            <MusicFolder onDoubleClick={(trackNumber) => { setCurrentTrack(trackNumber); setIsMusicPlayerOpen(true); }} />
           </DraggableWindow>
         ) : (
           ''
         )}
-        {isMusicFolderOpen && !isMusicFolderHidden ? (
-          <DraggableWindow title="Desktop/music" onClose={() => { setIsMusicFolderOpen(false); setIsMusicFolderHidden(false) }} onHide={() => setIsMusicFolderHidden(true)}>
-            <MusicFolder />
+        {isMusicPlayerOpen && !isMusicPlayerHidden ? (
+          // <DraggablePlayer onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }}>
+          // </DraggablePlayer>
+          <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Player">
+            <MusicPlayer trackNumber={currentTrack} />
           </DraggableWindow>
         ) : (
           ''

@@ -5,10 +5,10 @@ import * as mm from 'music-metadata-browser';
 // TODO: implement next/previous tracks functionality
 
 interface MusicPlayerProps {
-    track: string;
+    trackNumber: number;
 }
 
-const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
+const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const progressBarRef = useRef<HTMLDivElement>(null);
     const volumeBarRef = useRef<HTMLDivElement>(null);
@@ -22,12 +22,28 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
     const audioFiles = [
         '../../sample.mp3',
         '../../sample2.mp3',
-        '../../sample3.mp3'
+        '../../sample1.mp3' // TODO: tracks will be replaced, these are simply samples
     ]
 
     useEffect(() => {
         loadTrack(currentTrackIndex);
     }, [currentTrackIndex]);
+
+    useEffect(() => {
+        loadTrack(trackNumber);
+        const trackUrl = audioFiles[trackNumber];
+        if (audioRef && audioRef.current) {
+            audioRef.current.src = trackUrl;
+            mm.fetchFromUrl(trackUrl).then((resp) => {
+
+                setMetadata({
+                    title: resp.common.title || 'Unknown Title',
+                    artist: resp.common.artist || 'Unknown Artist',
+                    album: resp.common.album || 'Unknown Album',
+                });
+            });
+        }
+    }, [trackNumber]);
 
     const loadTrack = async (index: number) => {
         if (audioRef.current) {
@@ -123,7 +139,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
             </div>
             <audio
                 ref={audioRef}
-                src={track || '../../sample.mp3'}
+                src={audioFiles[trackNumber]}
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
             ></audio>
