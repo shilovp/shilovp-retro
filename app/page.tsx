@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DraggableWindow from "./components/draggableWindow";
 import Start from "./components/start";
 import About from "./components/windows/about";
@@ -22,6 +22,10 @@ export default function Home() {
   const [isMusicFolderOpen, setIsMusicFolderOpen] = useState(false);
   const [isMusicFolderHidden, setIsMusicFolderHidden] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
+
+  useEffect(() => {
+    setCurrentTrack(currentTrack);
+  }, [currentTrack]);
 
   const onStartMenuClick = (menu: string) => {
     if (menu === 'about') {
@@ -80,7 +84,7 @@ export default function Home() {
         )}
         {isMusicFolderOpen && !isMusicFolderHidden ? (
           <DraggableWindow title="Desktop/music" onClose={() => { setIsMusicFolderOpen(false); setIsMusicFolderHidden(false) }} onHide={() => setIsMusicFolderHidden(true)}>
-            <MusicFolder onDoubleClick={(trackNumber) => { setCurrentTrack(trackNumber); setIsMusicPlayerOpen(true); }} />
+            <MusicFolder onDoubleClick={async (trackNumber) => { await setCurrentTrack(trackNumber); setIsMusicPlayerOpen(true); }} />
           </DraggableWindow>
         ) : (
           ''
@@ -98,7 +102,7 @@ export default function Home() {
           icon={'./player.png'}
           label="Player"
           initialPosition={{ x: 25, y: 80 }}
-          onDoubleClick={() => { setIsMusicPlayerOpen(true); setIsMusicPlayerHidden(false) }}
+          onDoubleClick={async () => { await setCurrentTrack(0); setIsMusicPlayerOpen(true); setIsMusicPlayerHidden(false) }}
         />
         <MovableIcon
           icon={'./credits.png'}
