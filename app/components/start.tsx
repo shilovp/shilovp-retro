@@ -118,7 +118,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showMusicPlayerIcon ? (
                         <div
-                            className={`${isMusicPlayerHidden ? "cursor-pointer" : "cursor-auto"} ${isMusicPlayerHidden ? "opacity-80" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isMusicPlayerHidden ? "cursor-pointer" : "cursor-auto"} ${isMusicPlayerHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
                             onClick={() => {
                                 if (!isMusicPlayerHidden) { return } else { onMenuClick('musicPlayer') }
                             }}>
