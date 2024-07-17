@@ -1,7 +1,14 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaPlay, FaPause, FaForward, FaBackward, FaVolumeUp } from 'react-icons/fa';
+import * as mm from 'music-metadata-browser';
 
-const About: React.FC<{}> = () => {
+// TODO: implement next/previous tracks functionality
+
+interface MusicPlayerProps {
+    track: string;
+}
+
+const MusicPlayer: React.FC<MusicPlayerProps> = ({ track }) => {
     const audioRef = useRef<HTMLAudioElement>(null);
     const progressBarRef = useRef<HTMLDivElement>(null);
     const volumeBarRef = useRef<HTMLDivElement>(null);
@@ -9,6 +16,31 @@ const About: React.FC<{}> = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [volume, setVolume] = useState(0.7);
     const [duration, setDuration] = useState(0);
+    const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+    const [metadata, setMetadata] = useState<{ title: string; artist: string; album: string } | null>(null);
+
+    const audioFiles = [
+        '../../sample.mp3',
+        '../../sample2.mp3',
+        '../../sample3.mp3'
+    ]
+
+    useEffect(() => {
+        loadTrack(currentTrackIndex);
+    }, [currentTrackIndex]);
+
+    const loadTrack = async (index: number) => {
+        if (audioRef.current) {
+            const trackUrl = audioFiles[index];
+            audioRef.current.src = trackUrl;
+            const metadata = await mm.fetchFromUrl(trackUrl);
+            setMetadata({
+                title: metadata.common.title || 'Unknown Title',
+                artist: metadata.common.artist || 'Unknown Artist',
+                album: metadata.common.album || 'Unknown Album',
+            });
+        }
+    };
 
     const togglePlayPause = () => {
         if (isPlaying) {
@@ -63,15 +95,15 @@ const About: React.FC<{}> = () => {
     return (
         <div className="flex flex-col p-1 background-fix ">
             <div className=" border-violet-500 border bg-blue-900 p-1 text-blue-400 mb-4">
-                <p>State of Decay 2 Trailer Song METALIZED!! - Jesper Kyd</p>
-
+                <p className='text-sm'>{metadata?.title}</p>
+                <p className='text-xs mt-1'>{metadata?.artist}</p>
                 {
                     isPlaying ? (
                         <p className="text-xs mt-4">Playing ... </p>
 
                     ) : (
                         <p className="text-xs mt-4"> / / / / Player paused</p>
-                        // equalizer will be added later
+                        // TODO: equalizer will be added later
                     )
                 }
             </div>
@@ -91,7 +123,7 @@ const About: React.FC<{}> = () => {
             </div>
             <audio
                 ref={audioRef}
-                src="../../sample.mp3"
+                src={track || '../../sample.mp3'}
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
             ></audio>
@@ -129,4 +161,4 @@ const About: React.FC<{}> = () => {
 }
 
 
-export default About;
+export default MusicPlayer;

@@ -7,6 +7,7 @@ import MovableIcon from "./components/movableIcon";
 import MusicPlayer from "./components/windows/musicPlayer";
 import DraggablePlayer from "./components/draggablePlayer";
 import Credits from "./components/windows/credits";
+import MusicFolder from "./components/windows/musicFolder";
 
 export default function Home() {
 
@@ -18,6 +19,8 @@ export default function Home() {
   const [isMusicPlayerHidden, setIsMusicPlayerHidden] = useState(false);
   const [isCreditsOpen, setIsCreditsOpen] = useState(false);
   const [isCreditsHidden, setIsCreditsHidden] = useState(false);
+  const [isMusicFolderOpen, setIsMusicFolderOpen] = useState(false);
+  const [isMusicFolderHidden, setIsMusicFolderHidden] = useState(false);
 
   const onStartMenuClick = (menu: string) => {
     if (menu === 'about') {
@@ -36,13 +39,22 @@ export default function Home() {
       setIsCreditsOpen(true);
       setIsCreditsHidden(false);
     }
+    if (menu === 'musicFolder') {
+      setIsMusicFolderOpen(true);
+      setIsMusicFolderHidden(false);
+    }
+  }
+
+  const openResumeInBrowser = () => {
+
   }
 
   return (
     <main className="flex flex-col min-h-screen w-full font-chicago h-screen">
       <Start onMenuClick={onStartMenuClick} showAboutIcon={isAboutOpen} isAboutHidden={isAboutHidden}
         showSettingsIcon={isSettingsOpen} isSettingHidden={isSettingsHidden} isMusicPlayerHidden={isMusicPlayerHidden} showMusicPlayerIcon={isMusicPlayerOpen}
-        showCreditsIcon={isCreditsOpen} isCreditsHidden={isCreditsHidden} />
+        showCreditsIcon={isCreditsOpen} isCreditsHidden={isCreditsHidden}
+        showMusicFolderIcon={isMusicFolderOpen} isMusicFolderHidden={isMusicFolderHidden} />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen && !isAboutHidden ? (
           <DraggableWindow title="About" onClose={() => { setIsAboutOpen(false); setIsAboutHidden(false) }} onHide={() => setIsAboutHidden(true)}>
@@ -68,15 +80,22 @@ export default function Home() {
         {isMusicPlayerOpen && !isMusicPlayerHidden ? (
           // <DraggablePlayer onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }}>
           // </DraggablePlayer>
-          <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Music player">
-            <MusicPlayer></MusicPlayer>
+          <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Player">
+            <MusicPlayer track='../sample.mp3' />
+          </DraggableWindow>
+        ) : (
+          ''
+        )}
+        {isMusicFolderOpen && !isMusicFolderHidden ? (
+          <DraggableWindow title="Desktop/music" onClose={() => { setIsMusicFolderOpen(false); setIsMusicFolderHidden(false) }} onHide={() => setIsMusicFolderHidden(true)}>
+            <MusicFolder />
           </DraggableWindow>
         ) : (
           ''
         )}
         <MovableIcon
           icon={'./player.png'}
-          label="Music"
+          label="Player"
           initialPosition={{ x: 25, y: 80 }}
           onDoubleClick={() => { setIsMusicPlayerOpen(true); setIsMusicPlayerHidden(false) }}
         />
@@ -90,7 +109,14 @@ export default function Home() {
           icon={'./cv.png'}
           label="Resume"
           initialPosition={{ x: 95, y: 180 }}
-          onDoubleClick={() => { setIsCreditsOpen(true); setIsCreditsHidden(false) }}
+          // onDoubleClick={() => { setIsCreditsOpen(true); setIsCreditsHidden(false) }}
+          onDoubleClick={() => { openResumeInBrowser() }}
+        />
+        <MovableIcon
+          icon={'./folder.png'}
+          label="music"
+          initialPosition={{ x: 25, y: 280 }}
+          onDoubleClick={() => { setIsMusicFolderOpen(true); setIsMusicFolderHidden(false) }}
         />
       </div>
     </main>

@@ -13,10 +13,12 @@ interface StartProps {
     showMusicPlayerIcon: boolean;
     showCreditsIcon: boolean;
     isCreditsHidden: boolean;
+    showMusicFolderIcon: boolean;
+    isMusicFolderHidden: boolean;
 }
 
 const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
-    showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden
+    showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden, showMusicFolderIcon, isMusicFolderHidden
 }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
@@ -152,11 +154,11 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showAboutIcon ? (
                         <div
-                            className={`${isAboutHidden ? "cursor-pointer" : "cursor-auto"} ${isAboutHidden ? "bg-opacity-50" : "bg-opacity-100"} relative h-5 w-5 bg-green-900 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isAboutHidden ? "cursor-pointer" : "cursor-auto"} ${isAboutHidden ? "opacity-50" : "opacity-100"} relative h-5 w-5`}
                             onClick={() => {
                                 if (!isAboutHidden) { return } else { onMenuClick('about') }
                             }}>
-                            <p>A</p>
+                            <img src="../about.png" alt="about" />
                             {
                                 isAboutHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
@@ -170,13 +172,31 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showSettingsIcon ? (
                         <div
-                            className={`${isSettingHidden ? "cursor-pointer" : "cursor-auto"} ${isSettingHidden ? "bg-opacity-50" : "bg-opacity-100"} relative h-5 w-5 bg-cyan-700 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isSettingHidden ? "cursor-pointer" : "cursor-auto"} ${isSettingHidden ? "opacity-50" : "opacity-100"} relative h-5 w-5`}
                             onClick={() => {
                                 if (!isSettingHidden) { return } else { onMenuClick('settings') }
                             }}>
-                            <p>S</p>
+                            <img src="../settings.png" alt="settings" />
                             {
                                 isSettingHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showMusicFolderIcon ? (
+                        <div
+                            className={`${isMusicFolderHidden ? "cursor-pointer" : "cursor-auto"} ${isMusicFolderHidden ? "opacity-50" : "opacity-100"} relative h-5 w-5`}
+                            onClick={() => {
+                                if (!isMusicFolderHidden) { return } else { onMenuClick('musicFolder') }
+                            }}>
+                            <img src="../folder.png" alt="folder" />
+                            {
+                                isMusicFolderHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
                                 ) : ('')
                             }
