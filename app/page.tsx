@@ -77,13 +77,19 @@ export default function Home() {
         <MovableIcon
           icon={'./player.png'}
           label="Music"
-          initialPosition={{ x: 25, y: 70 }}
+          initialPosition={{ x: 25, y: 80 }}
           onDoubleClick={() => { setIsMusicPlayerOpen(true); setIsMusicPlayerHidden(false) }}
         />
         <MovableIcon
           icon={'./credits.png'}
           label="Credits"
-          initialPosition={{ x: 85, y: 70 }}
+          initialPosition={{ x: 25, y: 180 }}
+          onDoubleClick={() => { setIsCreditsOpen(true); setIsCreditsHidden(false) }}
+        />
+        <MovableIcon
+          icon={'./cv.png'}
+          label="Resume"
+          initialPosition={{ x: 95, y: 180 }}
           onDoubleClick={() => { setIsCreditsOpen(true); setIsCreditsHidden(false) }}
         />
       </div>

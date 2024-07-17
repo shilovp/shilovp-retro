@@ -116,11 +116,11 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showMusicPlayerIcon ? (
                         <div
-                            className={`${isMusicPlayerHidden ? "cursor-pointer" : "cursor-auto"} ${isMusicPlayerHidden ? "opacity-80" : "opacity-100"} relative h-5 w-5 bg-green-900 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isMusicPlayerHidden ? "cursor-pointer" : "cursor-auto"} ${isMusicPlayerHidden ? "opacity-80" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
                             onClick={() => {
                                 if (!isMusicPlayerHidden) { return } else { onMenuClick('musicPlayer') }
                             }}>
-                            <img src="../player.png" width={20} height={20} alt="player" className='rounded-xl' />
+                            <img src="../player.png" width={20} height={20} alt="player" />
                             {
                                 isMusicPlayerHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
@@ -134,11 +134,11 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showCreditsIcon ? (
                         <div
-                            className={`${isCreditsHidden ? "cursor-pointer" : "cursor-auto"} ${isCreditsHidden ? "opacity-80" : "opacity-100"} relative h-5 w-5 bg-green-900 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isCreditsHidden ? "cursor-pointer" : "cursor-auto"} ${isCreditsHidden ? "opacity-80" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
                             onClick={() => {
                                 if (!isCreditsHidden) { return } else { onMenuClick('credits') }
                             }}>
-                            <img src="../credits.png" width={20} height={20} alt="credits" className='rounded-xl' />
+                            <img src="../credits.png" width={20} height={20} alt="credits" />
                             {
                                 isCreditsHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
