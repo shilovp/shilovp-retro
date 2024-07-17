@@ -1,9 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hm?
+This is fun project simulaing an old-school OS-like interface. 
+Project was started with purpose of learning a bit about [Next.js](https://nextjs.org/) and then grew up to something a bit more bigger :D
+
+
 
 ## Getting Started
 
-First, run the development server:
+First, insure you have installed NodeJS & NPM. Latest versions would do just fine.
 
+## Run
 ```bash
 npm run dev
 # or
@@ -16,21 +21,19 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can fork me or suggest changes or improvements via merge request.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Technologies stack I am using here
 
-## Learn More
+To make this project possible I have been using following:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- NextJS - for programming
+- Tailwind - for styling
+- Freepick - for showing to you amazing retro icons
+- Vercel - to host all above in cozy & relyable place
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Disclamer
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Please, do not hesitate to contact me fo business, smalltalk or whatever via Telegram, Discord and Email.
