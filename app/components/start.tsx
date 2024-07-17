@@ -136,7 +136,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showCreditsIcon ? (
                         <div
-                            className={`${isCreditsHidden ? "cursor-pointer" : "cursor-auto"} ${isCreditsHidden ? "opacity-80" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isCreditsHidden ? "cursor-pointer" : "cursor-auto"} ${isCreditsHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
                             onClick={() => {
                                 if (!isCreditsHidden) { return } else { onMenuClick('credits') }
                             }}>
