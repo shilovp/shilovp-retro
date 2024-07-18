@@ -16,7 +16,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const [volume, setVolume] = useState(0.7);
     const [duration, setDuration] = useState(0);
-    const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+    const [currentTrackIndex, setCurrentTrackIndex] = useState(trackNumber);
     const [metadata, setMetadata] = useState<{ title: string; artist: string; album: string } | null>(null);
 
     const audioFiles = [
@@ -49,12 +49,15 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
         if (audioRef.current) {
             const trackUrl = audioFiles[index];
             audioRef.current.src = trackUrl;
+            audioRef.current.load();
             const metadata = await mm.fetchFromUrl(trackUrl);
             setMetadata({
                 title: metadata.common.title || 'Unknown Title',
                 artist: metadata.common.artist || 'Unknown Artist',
                 album: metadata.common.album || 'Unknown Album',
             });
+            audioRef.current?.play();
+            setIsPlaying(true);
         }
     };
 
@@ -77,13 +80,19 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
 
     const handleBackward = () => {
         if (audioRef.current) {
-            audioRef.current.currentTime -= 10;
+            //audioRef.current.currentTime -= 10;
+            if (currentTrackIndex > 0) {
+                setCurrentTrackIndex(currentTrackIndex - 1);
+            }
         }
     };
 
     const handleForward = () => {
         if (audioRef.current) {
-            audioRef.current.currentTime += 10;
+            //audioRef.current.currentTime += 10;
+            if (currentTrackIndex < audioFiles.length - 1) {
+                setCurrentTrackIndex(currentTrackIndex + 1);
+            }
         }
     };
 

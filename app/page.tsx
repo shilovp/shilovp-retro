@@ -84,7 +84,10 @@ export default function Home() {
         )}
         {isMusicFolderOpen && !isMusicFolderHidden ? (
           <DraggableWindow title="Desktop/music" onClose={() => { setIsMusicFolderOpen(false); setIsMusicFolderHidden(false) }} onHide={() => setIsMusicFolderHidden(true)}>
-            <MusicFolder onDoubleClick={async (trackNumber) => { await setCurrentTrack(trackNumber); setIsMusicPlayerOpen(true); }} />
+            <MusicFolder onDoubleClick={(trackNumber) => {
+              setCurrentTrack(trackNumber);
+              setIsMusicPlayerOpen(true);
+            }} />
           </DraggableWindow>
         ) : (
           ''
