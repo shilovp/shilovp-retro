@@ -22,7 +22,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
     const audioFiles = [
         '../../sample.mp3',
         '../../sample2.mp3',
-        '../../sample.mp3' // TODO: tracks will be replaced, these are simply samples
+        '../../sample3.mp3' // TODO: tracks will be replaced, these are simply samples
     ]
 
     useEffect(() => {
