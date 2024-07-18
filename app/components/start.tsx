@@ -15,10 +15,13 @@ interface StartProps {
     isCreditsHidden: boolean;
     showMusicFolderIcon: boolean;
     isMusicFolderHidden: boolean;
+    showGameIcon: boolean;
+    isGameHidden: boolean;
 }
 
 const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
-    showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden, showMusicFolderIcon, isMusicFolderHidden
+    showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden, showMusicFolderIcon, isMusicFolderHidden,
+    showGameIcon, isGameHidden
 }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
@@ -125,6 +128,24 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                             <img src="../player.png" width={20} height={20} alt="player" />
                             {
                                 isMusicPlayerHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showGameIcon ? (
+                        <div
+                            className={`${isGameHidden ? "cursor-pointer" : "cursor-auto"} ${isGameHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isGameHidden) { return } else { onMenuClick('game') }
+                            }}>
+                            <img src="../game.png" width={20} height={20} alt="game" />
+                            {
+                                isGameHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
                                 ) : ('')
                             }

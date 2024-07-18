@@ -8,6 +8,7 @@ import MusicPlayer from "./components/windows/musicPlayer";
 // import DraggablePlayer from "./components/draggablePlayer";
 import Credits from "./components/windows/credits";
 import MusicFolder from "./components/windows/musicFolder";
+import Game from "./components/windows/game";
 
 export default function Home() {
 
@@ -21,6 +22,8 @@ export default function Home() {
   const [isCreditsHidden, setIsCreditsHidden] = useState(false);
   const [isMusicFolderOpen, setIsMusicFolderOpen] = useState(false);
   const [isMusicFolderHidden, setIsMusicFolderHidden] = useState(false);
+  const [isGameOpen, setIsGameOpen] = useState(false);
+  const [isGameHidden, setIsGameHidden] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
 
   useEffect(() => {
@@ -48,10 +51,14 @@ export default function Home() {
       setIsMusicFolderOpen(true);
       setIsMusicFolderHidden(false);
     }
+    if (menu === 'game') {
+      setIsGameOpen(true);
+      setIsGameHidden(false);
+    }
   }
 
   const openResumeInBrowser = () => {
-
+    // smth
   }
 
   return (
@@ -59,7 +66,8 @@ export default function Home() {
       <Start onMenuClick={onStartMenuClick} showAboutIcon={isAboutOpen} isAboutHidden={isAboutHidden}
         showSettingsIcon={isSettingsOpen} isSettingHidden={isSettingsHidden} isMusicPlayerHidden={isMusicPlayerHidden} showMusicPlayerIcon={isMusicPlayerOpen}
         showCreditsIcon={isCreditsOpen} isCreditsHidden={isCreditsHidden}
-        showMusicFolderIcon={isMusicFolderOpen} isMusicFolderHidden={isMusicFolderHidden} />
+        showMusicFolderIcon={isMusicFolderOpen} isMusicFolderHidden={isMusicFolderHidden}
+        showGameIcon={isGameOpen} isGameHidden={isGameHidden} />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen && !isAboutHidden ? (
           <DraggableWindow title="About" onClose={() => { setIsAboutOpen(false); setIsAboutHidden(false) }} onHide={() => setIsAboutHidden(true)}>
@@ -101,11 +109,24 @@ export default function Home() {
         ) : (
           ''
         )}
+        {isGameOpen && !isGameHidden ? (
+          <DraggableWindow onHide={() => { setIsGameHidden(true) }} onClose={() => { setIsGameOpen(false); }} title="Game">
+            <Game />
+          </DraggableWindow>
+        ) : (
+          ''
+        )}
         <MovableIcon
           icon={'./player.png'}
           label="Player"
           initialPosition={{ x: 25, y: 80 }}
           onDoubleClick={async () => { await setCurrentTrack(0); setIsMusicPlayerOpen(true); setIsMusicPlayerHidden(false) }}
+        />
+        <MovableIcon
+          icon={'./game.png'}
+          label="game"
+          initialPosition={{ x: 95, y: 80 }}
+          onDoubleClick={() => { setIsGameOpen(true); setIsGameHidden(false) }}
         />
         <MovableIcon
           icon={'./credits.png'}
