@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { FaPlay, FaPause, FaForward, FaBackward, FaVolumeUp } from 'react-icons/fa';
+import { FaPlay, FaPause, FaForward, FaBackward, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import * as mm from 'music-metadata-browser';
 
 // TODO: implement next/previous tracks functionality
@@ -18,6 +18,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
     const [duration, setDuration] = useState(0);
     const [currentTrackIndex, setCurrentTrackIndex] = useState(trackNumber);
     const [metadata, setMetadata] = useState<{ title: string; artist: string; album: string } | null>(null);
+    const [isMuted, setIsMuted] = useState(false);
 
     const audioFiles = [
         '../../sample.mp3',
@@ -112,6 +113,15 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
             const newVolume = clickX / rect.width;
             audioRef.current.volume = newVolume;
             setVolume(newVolume);
+            audioRef.current.muted = false;
+            setIsMuted(false);
+        }
+    };
+
+    const toggleMute = () => {
+        if (audioRef.current) {
+            audioRef.current.muted = !audioRef.current.muted;
+            setIsMuted(!isMuted);
         }
     };
 
@@ -167,7 +177,9 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
                 </div>
                 <div>
                     <div className="flex place-items-center place-content-center">
-                        <FaVolumeUp className='' />
+                        <button onClick={toggleMute} className="mr-2">
+                            {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+                        </button>
                         <div
                             ref={volumeBarRef}
                             className="w-20 h-1 bg-blue-900 rounded-full ml-1 relative cursor-pointer pb-2"
@@ -180,6 +192,9 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className='text-xs'>
+                <p>Track {(currentTrackIndex + 1)} of {audioFiles.length}</p>
             </div>
         </div>
     )
