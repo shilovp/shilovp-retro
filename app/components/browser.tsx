@@ -33,6 +33,19 @@ const DraggableWindow: React.FC<BrowserProps> = ({ onClose, onHide, title }) => 
           </div>
         </div>
       </div>
+      <div className='h-8 border-b border-black bg-gray-50 flex gap-0.5'>
+        <div className='border-r border-black w-20 h-8 flex place-items-center place-content-center bg-gray-700'><p className='text-xs text-white'>Resume</p></div>
+      </div>
+      <div className='h-6 bg-white border-b border-black flex place-items-center'>
+        <p className='px-2 text-xs text-blue-600 cursor-text w-full py-2 select-text'>https://shilovp.web.app</p>
+      </div>
+      <div className='h-full'>
+        <iframe
+          src="../CV_Pavel_Shilov.pdf"
+          className="w-full h-full"
+          title="PDF Viewer"
+        ></iframe>
+      </div>
     </div>
   );
 };
