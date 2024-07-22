@@ -6,7 +6,10 @@ import { useMinesweeper } from '../../hooks/useMinesweeper';
 
 
 const Game: React.FC = () => {
-    const { grid, isGameOver, isGameWon, initializeGrid, revealCell, toggleFlag } = useMinesweeper(10, 10, 10);
+    const rows = 10;
+    const cols = 10;
+    const mines = 15;
+    const { grid, isGameOver, isGameWon, initializeGrid, revealCell, toggleFlag } = useMinesweeper(rows, cols, mines);
 
     useEffect(() => {
         initializeGrid();
@@ -26,7 +29,7 @@ const Game: React.FC = () => {
             {!isGameOver && !isGameWon && <p className='text-xs text-center pt-2 my-1'>======= MINESWEEPER ========</p>}
             {isGameOver && <p className='my-1 text-red-500 text-center'>Game Over!</p>}
             {isGameWon && <p className='my-1 text-green-500 text-center'>Win!</p>}
-            <div className="grid grid-cols-10 text-center mt-4">
+            <div className={"grid text-center mt-4 " + "grid-cols-10"}>
                 {grid.map((row, rowIndex) =>
                     row.map((cell, colIndex) => (
                         <div

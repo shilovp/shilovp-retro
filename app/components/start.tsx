@@ -17,11 +17,13 @@ interface StartProps {
     isMusicFolderHidden: boolean;
     showGameIcon: boolean;
     isGameHidden: boolean;
+    showBrowserIcon: boolean;
+    isBrowserHidden: boolean;
 }
 
 const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
     showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden, showMusicFolderIcon, isMusicFolderHidden,
-    showGameIcon, isGameHidden
+    showGameIcon, isGameHidden, isBrowserHidden, showBrowserIcon
 }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
@@ -73,7 +75,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
     }, [isOpen]);
 
     return (
-        <div className="w-full bg-inherit flex items-center align-middle border-b border-black h-9 text-xs font-bold select-none">
+        <div className="w-full bg-inherit flex items-center align-middle border-b border-black h-9 text-xs font-bold select-none" style={{ zIndex: 999 }}>
             <div className="text-center cursor-pointer z-50">
                 <button className={classNames(
                     'border-black border-r w-20 flex items-center px-3 hover:bg-black hover:text-white',
@@ -95,7 +97,7 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 </button>
                 {isOpen && (
                     <div className="absolute left-0 w-40">
-                        <ul className="background-fix border-r border-b border-black">
+                        <ul className="background-fix border-r border-b border-black" style={{ zIndex: 999 }}>
                             <li>
                                 <a href="#" className="hover:bg-black hover:text-white block py-1 px-4 text-black text-left border-b border-black"
                                     onClick={() => onMenuClick('about')}>
@@ -165,6 +167,24 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                             <img src="../credits.png" width={20} height={20} alt="credits" />
                             {
                                 isCreditsHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showBrowserIcon ? (
+                        <div
+                            className={`${isBrowserHidden ? "cursor-pointer" : "cursor-auto"} ${isBrowserHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isBrowserHidden) { return } else { onMenuClick('browser') }
+                            }}>
+                            <img src="../globus.png" width={20} height={20} alt="browser" />
+                            {
+                                isBrowserHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
                                 ) : ('')
                             }

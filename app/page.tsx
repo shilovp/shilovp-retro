@@ -9,6 +9,7 @@ import MusicPlayer from "./components/windows/musicPlayer";
 import Credits from "./components/windows/credits";
 import MusicFolder from "./components/windows/musicFolder";
 import Game from "./components/windows/game";
+import Browser from "./components/browser";
 
 export default function Home() {
 
@@ -25,6 +26,8 @@ export default function Home() {
   const [isGameOpen, setIsGameOpen] = useState(false);
   const [isGameHidden, setIsGameHidden] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
+  const [isBrowserHidden, setIsBrowserHidden] = useState(false);
+  const [isBrowserOpen, setIsBrowserOpen] = useState(false);
 
   useEffect(() => {
     setCurrentTrack(currentTrack);
@@ -55,6 +58,10 @@ export default function Home() {
       setIsGameOpen(true);
       setIsGameHidden(false);
     }
+    if (menu === 'browser') {
+      setIsBrowserOpen(true);
+      setIsBrowserHidden(false);
+    }
   }
 
   const openResumeInBrowser = () => {
@@ -67,7 +74,7 @@ export default function Home() {
         showSettingsIcon={isSettingsOpen} isSettingHidden={isSettingsHidden} isMusicPlayerHidden={isMusicPlayerHidden} showMusicPlayerIcon={isMusicPlayerOpen}
         showCreditsIcon={isCreditsOpen} isCreditsHidden={isCreditsHidden}
         showMusicFolderIcon={isMusicFolderOpen} isMusicFolderHidden={isMusicFolderHidden}
-        showGameIcon={isGameOpen} isGameHidden={isGameHidden} />
+        showGameIcon={isGameOpen} isGameHidden={isGameHidden} isBrowserHidden={isBrowserHidden} showBrowserIcon={isBrowserOpen  } />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen && !isAboutHidden ? (
           <DraggableWindow title="About" onClose={() => { setIsAboutOpen(false); setIsAboutHidden(false) }} onHide={() => setIsAboutHidden(true)}>
@@ -116,6 +123,11 @@ export default function Home() {
         ) : (
           ''
         )}
+        {isBrowserOpen && !isBrowserHidden ? (
+          <Browser onHide={() => { setIsBrowserHidden(true) }} onClose={() => { setIsBrowserOpen(false); }} title="Browser" />
+        ) : (
+          ''
+        )}
         <MovableIcon
           icon={'./player.png'}
           label="Player"
@@ -129,6 +141,12 @@ export default function Home() {
           onDoubleClick={() => { setIsGameOpen(true); setIsGameHidden(false) }}
         />
         <MovableIcon
+          icon={'./globus.png'}
+          label="Web"
+          initialPosition={{ x: 25, y: 360 }}
+          onDoubleClick={() => { setIsBrowserOpen(true); setIsBrowserHidden(false) }}
+        />
+        <MovableIcon
           icon={'./credits.png'}
           label="Credits"
           initialPosition={{ x: 25, y: 180 }}
@@ -138,8 +156,7 @@ export default function Home() {
           icon={'./cv.png'}
           label="Resume"
           initialPosition={{ x: 95, y: 180 }}
-          // onDoubleClick={() => { setIsCreditsOpen(true); setIsCreditsHidden(false) }}
-          onDoubleClick={() => { openResumeInBrowser() }}
+          onDoubleClick={() => { setIsBrowserOpen(true); setIsBrowserHidden(false) }}
         />
         <MovableIcon
           icon={'./folder.png'}

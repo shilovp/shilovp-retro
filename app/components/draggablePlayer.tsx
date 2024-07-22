@@ -87,7 +87,7 @@ const DraggableWindow: React.FC<DraggablePlayerProps> = ({ onClose, onHide }) =>
             </button>
           </div>
         </div>
-        <MusicPlayer></MusicPlayer>
+        <MusicPlayer trackNumber={0}></MusicPlayer>
       </div>
     </div>
   );
