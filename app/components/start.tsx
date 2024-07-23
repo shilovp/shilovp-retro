@@ -19,11 +19,13 @@ interface StartProps {
     isGameHidden: boolean;
     showBrowserIcon: boolean;
     isBrowserHidden: boolean;
+    showReaderIcon: boolean;
+    isReaderHidden: boolean;
 }
 
 const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
     showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden, showMusicFolderIcon, isMusicFolderHidden,
-    showGameIcon, isGameHidden, isBrowserHidden, showBrowserIcon
+    showGameIcon, isGameHidden, isBrowserHidden, showBrowserIcon, showReaderIcon, isReaderHidden
 }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
@@ -149,6 +151,24 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                             <img src="../game.png" width={20} height={20} alt="game" />
                             {
                                 isGameHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showReaderIcon ? (
+                        <div
+                            className={`${isReaderHidden ? "cursor-pointer" : "cursor-auto"} ${isReaderHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isReaderHidden) { return } else { onMenuClick('reader') }
+                            }}>
+                            <img src="../cv.png" width={20} height={20} alt="reader" />
+                            {
+                                isReaderHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
                                 ) : ('')
                             }

@@ -5,11 +5,11 @@ import Start from "./components/start";
 import About from "./components/windows/about";
 import MovableIcon from "./components/movableIcon";
 import MusicPlayer from "./components/windows/musicPlayer";
-// import DraggablePlayer from "./components/draggablePlayer";
 import Credits from "./components/windows/credits";
 import MusicFolder from "./components/windows/musicFolder";
 import Game from "./components/windows/game";
 import Browser from "./components/browser";
+import Reader from "./components/reader";
 
 export default function Home() {
 
@@ -28,6 +28,8 @@ export default function Home() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isBrowserHidden, setIsBrowserHidden] = useState(false);
   const [isBrowserOpen, setIsBrowserOpen] = useState(false);
+  const [isReaderHidden, setIsReaderHidden] = useState(false);
+  const [isReaderOpen, setIsReaderOpen] = useState(false);
 
   useEffect(() => {
     setCurrentTrack(currentTrack);
@@ -62,10 +64,10 @@ export default function Home() {
       setIsBrowserOpen(true);
       setIsBrowserHidden(false);
     }
-  }
-
-  const openResumeInBrowser = () => {
-    // smth
+    if (menu === 'reader') {
+      setIsReaderOpen(true);
+      setIsReaderHidden(false);
+    }
   }
 
   return (
@@ -74,7 +76,8 @@ export default function Home() {
         showSettingsIcon={isSettingsOpen} isSettingHidden={isSettingsHidden} isMusicPlayerHidden={isMusicPlayerHidden} showMusicPlayerIcon={isMusicPlayerOpen}
         showCreditsIcon={isCreditsOpen} isCreditsHidden={isCreditsHidden}
         showMusicFolderIcon={isMusicFolderOpen} isMusicFolderHidden={isMusicFolderHidden}
-        showGameIcon={isGameOpen} isGameHidden={isGameHidden} isBrowserHidden={isBrowserHidden} showBrowserIcon={isBrowserOpen  } />
+        showGameIcon={isGameOpen} isGameHidden={isGameHidden} isBrowserHidden={isBrowserHidden} showBrowserIcon={isBrowserOpen}
+        showReaderIcon={isReaderOpen} isReaderHidden={isReaderHidden} />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen && !isAboutHidden ? (
           <DraggableWindow title="About" onClose={() => { setIsAboutOpen(false); setIsAboutHidden(false) }} onHide={() => setIsAboutHidden(true)}>
@@ -123,8 +126,13 @@ export default function Home() {
         ) : (
           ''
         )}
+        {isReaderOpen && !isReaderHidden ? (
+          <Reader onHide={() => { setIsReaderHidden(true) }} onClose={() => { setIsReaderOpen(false); }} />
+        ) : (
+          ''
+        )}
         {isBrowserOpen && !isBrowserHidden ? (
-          <Browser onHide={() => { setIsBrowserHidden(true) }} onClose={() => { setIsBrowserOpen(false); }} title="Browser" />
+          <Browser onHide={() => { setIsBrowserHidden(true) }} onClose={() => { setIsBrowserOpen(false); }} />
         ) : (
           ''
         )}
@@ -156,7 +164,7 @@ export default function Home() {
           icon={'./cv.png'}
           label="Resume"
           initialPosition={{ x: 95, y: 180 }}
-          onDoubleClick={() => { setIsBrowserOpen(true); setIsBrowserHidden(false) }}
+          onDoubleClick={() => { setIsReaderOpen(true); setIsReaderHidden(false) }}
         />
         <MovableIcon
           icon={'./folder.png'}
