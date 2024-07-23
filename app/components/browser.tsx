@@ -38,7 +38,7 @@ const Browser: React.FC<BrowserProps> = ({ onClose, onHide }) => {
       </div>
       <div className='h-full'>
         <iframe
-          src="../CV_Pavel_Shilov.pdf"
+          src="https://shilovp.web.app"
           className="w-full h-full"
           title="PDF Viewer"
         ></iframe>
