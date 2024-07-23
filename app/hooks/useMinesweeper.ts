@@ -99,7 +99,6 @@ export const useMinesweeper = (rows: number, cols: number, mines: number) => {
     // Check if all non-mine cells are revealed
     if (grid.every(row => row.every(cell => (cell.isMine || cell.isRevealed)))) {
       setIsGameWon(true);
-      console.log(isGameWon);
     }
   };
 
