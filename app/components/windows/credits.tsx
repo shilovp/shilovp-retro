@@ -7,7 +7,7 @@ const Credits: React.FC<{}> = () => {
                 <li>React based Framework - <a className="text-blue-700" href="https://nextjs.org/">NextJS</a></li>
                 <li>For the design - <a className="text-blue-700" href="https://tailwindcss.com/">Tailwind CSS</a></li>
                 <li>Hosting by - <a className="text-blue-700" href="https://vercel.com/">Vercel</a></li>
-                <li>Music by -  <a className="text-blue-700" href="https://www.jesperkyd.com/">Jesper Kyd</a></li>
+                <li>Music by -  <a className="text-blue-700" href="https://en.wikipedia.org/wiki/Koji_Kondo">Koji Kondo</a></li>
                 <li>Icons by - <a className="text-blue-700" href="https://www.freepik.com/">Freepik</a></li>
             </ul>
             <p className="text-xs">

@@ -21,6 +21,26 @@ const MusicFolder: React.FC<MusicFolderProps> = ({ onDoubleClick }) => {
                     <img src="../../audio.png" width={35} alt="" />
                     <p className="text-xs">3.mp3</p>
                 </div>
+                <div className="flex flex-col cursor-pointer"
+                    onDoubleClick={() => { onDoubleClick(3) }}>
+                    <img src="../../audio.png" width={35} alt="" />
+                    <p className="text-xs">4.mp3</p>
+                </div>
+                <div className="flex flex-col cursor-pointer"
+                    onDoubleClick={() => { onDoubleClick(4) }}>
+                    <img src="../../audio.png" width={35} alt="" />
+                    <p className="text-xs">5.mp3</p>
+                </div>
+                <div className="flex flex-col cursor-pointer"
+                    onDoubleClick={() => { onDoubleClick(5) }}>
+                    <img src="../../audio.png" width={35} alt="" />
+                    <p className="text-xs">6.mp3</p>
+                </div>
+                <div className="flex flex-col cursor-pointer"
+                    onDoubleClick={() => { onDoubleClick(6) }}>
+                    <img src="../../audio.png" width={35} alt="" />
+                    <p className="text-xs">7.mp3</p>
+                </div>
             </div>
         </div>
     );

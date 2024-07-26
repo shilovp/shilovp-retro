@@ -21,9 +21,16 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
     const [isMuted, setIsMuted] = useState(false);
 
     const audioFiles = [
-        '../../sample.mp3',
-        '../../sample2.mp3',
-        '../../sample3.mp3' // TODO: tracks will be replaced, these are simply samples
+        // '../../sample.mp3',
+        // '../../sample2.mp3',
+        // '../../sample3.mp3',
+        '../../01. Ground Theme.mp3',
+        '../../02. Underground Theme.mp3',
+        '../../03. Underwater Theme.mp3',
+        '../../04. Castle Theme.mp3',
+        '../../05. Invincibility Theme.mp3',
+        '../../12. Ground Theme (Hurry!).mp3',
+        '../../20. Saved the Princess (Famicom Disc System).mp3'
     ]
 
     useEffect(() => {

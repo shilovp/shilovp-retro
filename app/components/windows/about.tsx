@@ -36,13 +36,6 @@ const About: React.FC<{}> = () => {
                     <p className="px-0.5" style={{ fontSize: 10 }}>Discord</p>
                 </div>
             </div>
-            {/* <div className="mt-4 flex">
-                <img src="../../ua.png" width={30} alt="ua" />
-                <p><span className="text-xs">Donate to </span>
-                    <span className="text-sm text-red-600 border-b border-red-600 cursor-pointer mx-2">HELP</span>
-                    <span className="text-xs"> Ukraine</span></p>
-                <img src="../../ua.png" width={30} alt="ua" />
-            </div> */}
         </div>
     );
 }
