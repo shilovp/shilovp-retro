@@ -10,6 +10,7 @@ import MusicFolder from "./components/windows/musicFolder";
 import Game from "./components/windows/game";
 import Browser from "./components/browser";
 import Reader from "./components/reader";
+import VideoPlayer from "./components/windows/videoPlayer";
 
 export default function Home() {
 
@@ -30,6 +31,8 @@ export default function Home() {
   const [isBrowserOpen, setIsBrowserOpen] = useState(false);
   const [isReaderHidden, setIsReaderHidden] = useState(false);
   const [isReaderOpen, setIsReaderOpen] = useState(false);
+  const [isVideoPlayerHidden, setIsVideoPlayerHidden] = useState(false);
+  const [isVideoPlayerOpen, setIsVideoPlayerOpen] = useState(false);
 
   useEffect(() => {
     setCurrentTrack(currentTrack);
@@ -68,6 +71,10 @@ export default function Home() {
       setIsReaderOpen(true);
       setIsReaderHidden(false);
     }
+    if (menu === 'videoPlayer') {
+      setIsVideoPlayerOpen(true);
+      setIsVideoPlayerHidden(false);
+    }
   }
 
   return (
@@ -77,7 +84,8 @@ export default function Home() {
         showCreditsIcon={isCreditsOpen} isCreditsHidden={isCreditsHidden}
         showMusicFolderIcon={isMusicFolderOpen} isMusicFolderHidden={isMusicFolderHidden}
         showGameIcon={isGameOpen} isGameHidden={isGameHidden} isBrowserHidden={isBrowserHidden} showBrowserIcon={isBrowserOpen}
-        showReaderIcon={isReaderOpen} isReaderHidden={isReaderHidden} />
+        showReaderIcon={isReaderOpen} isReaderHidden={isReaderHidden}
+        showVideoPlayerIcon={isVideoPlayerOpen} isVideoPlayerHidden={isVideoPlayerHidden} />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen && !isAboutHidden ? (
           <DraggableWindow title="About" onClose={() => { setIsAboutOpen(false); setIsAboutHidden(false) }} onHide={() => setIsAboutHidden(true)}>
@@ -96,6 +104,13 @@ export default function Home() {
         {isCreditsOpen && !isCreditsHidden ? (
           <DraggableWindow title="Credits" onClose={() => { setIsCreditsOpen(false); setIsCreditsHidden(false) }} onHide={() => setIsCreditsHidden(true)}>
             <Credits />
+          </DraggableWindow>
+        ) : (
+          ''
+        )}
+        {isVideoPlayerOpen && !isVideoPlayerHidden ? (
+          <DraggableWindow title="Video Player" onClose={() => { setIsVideoPlayerOpen(false); setIsVideoPlayerHidden(false) }} onHide={() => setIsVideoPlayerHidden(true)}>
+            <VideoPlayer />
           </DraggableWindow>
         ) : (
           ''
@@ -143,9 +158,15 @@ export default function Home() {
           onDoubleClick={async () => { await setCurrentTrack(0); setIsMusicPlayerOpen(true); setIsMusicPlayerHidden(false) }}
         />
         <MovableIcon
+          icon={'./videoPlayer.png'}
+          label="video"
+          initialPosition={{ x: 95, y: 80 }}
+          onDoubleClick={() => { setIsVideoPlayerOpen(true); setIsVideoPlayerHidden(false) }}
+        />
+        <MovableIcon
           icon={'./game.png'}
           label="game"
-          initialPosition={{ x: 95, y: 80 }}
+          initialPosition={{ x: 165, y: 80 }}
           onDoubleClick={() => { setIsGameOpen(true); setIsGameHidden(false) }}
         />
         <MovableIcon

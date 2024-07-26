@@ -21,11 +21,14 @@ interface StartProps {
     isBrowserHidden: boolean;
     showReaderIcon: boolean;
     isReaderHidden: boolean;
+    showVideoPlayerIcon: boolean;
+    isVideoPlayerHidden: boolean;
 }
 
 const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
     showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden, showMusicFolderIcon, isMusicFolderHidden,
-    showGameIcon, isGameHidden, isBrowserHidden, showBrowserIcon, showReaderIcon, isReaderHidden
+    showGameIcon, isGameHidden, isBrowserHidden, showBrowserIcon, showReaderIcon, isReaderHidden,
+    showVideoPlayerIcon, isVideoPlayerHidden
 }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
@@ -169,6 +172,24 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                             <img src="../cv.png" width={20} height={20} alt="reader" />
                             {
                                 isReaderHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showVideoPlayerIcon ? (
+                        <div
+                            className={`${isVideoPlayerHidden ? "cursor-pointer" : "cursor-auto"} ${isVideoPlayerHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isVideoPlayerHidden) { return } else { onMenuClick('videoPlayer') }
+                            }}>
+                            <img src="../videoPlayer.png" width={20} height={20} alt="video" />
+                            {
+                                isVideoPlayerHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
                                 ) : ('')
                             }
