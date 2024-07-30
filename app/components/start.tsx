@@ -23,12 +23,14 @@ interface StartProps {
     isReaderHidden: boolean;
     showVideoPlayerIcon: boolean;
     isVideoPlayerHidden: boolean;
+    showPicturesFolderIcon: boolean;
+    isPicturesFolderrHidden: boolean;
 }
 
 const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
     showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden, showMusicFolderIcon, isMusicFolderHidden,
     showGameIcon, isGameHidden, isBrowserHidden, showBrowserIcon, showReaderIcon, isReaderHidden,
-    showVideoPlayerIcon, isVideoPlayerHidden
+    showVideoPlayerIcon, isVideoPlayerHidden, showPicturesFolderIcon, isPicturesFolderrHidden
 }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
@@ -136,6 +138,24 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                             <img src="../player.png" width={20} height={20} alt="player" />
                             {
                                 isMusicPlayerHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showPicturesFolderIcon ? (
+                        <div
+                            className={`${isPicturesFolderrHidden ? "cursor-pointer" : "cursor-auto"} ${isPicturesFolderrHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isPicturesFolderrHidden) { return } else { onMenuClick('picturesFolder') }
+                            }}>
+                            <img src="../folder.png" width={20} height={20} alt="picturesFolder" />
+                            {
+                                isPicturesFolderrHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
                                 ) : ('')
                             }

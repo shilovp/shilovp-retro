@@ -11,6 +11,7 @@ import Game from "./components/windows/game";
 import Browser from "./components/browser";
 import Reader from "./components/reader";
 import VideoPlayer from "./components/windows/videoPlayer";
+import PicturesFolder from "./components/windows/picturesFolder";
 
 export default function Home() {
 
@@ -33,6 +34,8 @@ export default function Home() {
   const [isReaderOpen, setIsReaderOpen] = useState(false);
   const [isVideoPlayerHidden, setIsVideoPlayerHidden] = useState(false);
   const [isVideoPlayerOpen, setIsVideoPlayerOpen] = useState(false);
+  const [isPicturesFolderHidden, setIsPicturesFolderHidden] = useState(false);
+  const [isPicturesFolderOpen, setIsPicturesFolderOpen] = useState(false);
 
   useEffect(() => {
     setCurrentTrack(currentTrack);
@@ -75,6 +78,10 @@ export default function Home() {
       setIsVideoPlayerOpen(true);
       setIsVideoPlayerHidden(false);
     }
+    if (menu === 'picturesFolder') {
+      setIsPicturesFolderOpen(true);
+      setIsPicturesFolderHidden(false);
+    }
   }
 
   return (
@@ -85,7 +92,8 @@ export default function Home() {
         showMusicFolderIcon={isMusicFolderOpen} isMusicFolderHidden={isMusicFolderHidden}
         showGameIcon={isGameOpen} isGameHidden={isGameHidden} isBrowserHidden={isBrowserHidden} showBrowserIcon={isBrowserOpen}
         showReaderIcon={isReaderOpen} isReaderHidden={isReaderHidden}
-        showVideoPlayerIcon={isVideoPlayerOpen} isVideoPlayerHidden={isVideoPlayerHidden} />
+        showVideoPlayerIcon={isVideoPlayerOpen} isVideoPlayerHidden={isVideoPlayerHidden}
+        showPicturesFolderIcon={isPicturesFolderOpen} isPicturesFolderrHidden={isPicturesFolderHidden} />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen && !isAboutHidden ? (
           <DraggableWindow title="About" onClose={() => { setIsAboutOpen(false); setIsAboutHidden(false) }} onHide={() => setIsAboutHidden(true)}>
@@ -110,7 +118,7 @@ export default function Home() {
         )}
         {isVideoPlayerOpen && !isVideoPlayerHidden ? (
           <DraggableWindow title="Video Player" onClose={() => { setIsVideoPlayerOpen(false); setIsVideoPlayerHidden(false) }} onHide={() => setIsVideoPlayerHidden(true)}>
-            <VideoPlayer videoUrl="https://youtu.be/-QjxOwE3FsA?list=PLiAIwi_8SZBxyw-puUEx74R3nZseQUMQC"/>
+            <VideoPlayer videoUrl="https://youtu.be/-QjxOwE3FsA?list=PLiAIwi_8SZBxyw-puUEx74R3nZseQUMQC" />
           </DraggableWindow>
         ) : (
           ''
@@ -120,6 +128,15 @@ export default function Home() {
             <MusicFolder onDoubleClick={(trackNumber) => {
               setCurrentTrack(trackNumber);
               setIsMusicPlayerOpen(true);
+            }} />
+          </DraggableWindow>
+        ) : (
+          ''
+        )}
+        {isPicturesFolderOpen && !isPicturesFolderHidden ? (
+          <DraggableWindow title="Desktop/photos" onClose={() => { setIsPicturesFolderOpen(false); setIsPicturesFolderHidden(false) }} onHide={() => setIsPicturesFolderHidden(true)}>
+            <PicturesFolder onDoubleClick={(imgNumber) => {
+              console.log("imgnumber: ", imgNumber);
             }} />
           </DraggableWindow>
         ) : (
@@ -170,12 +187,6 @@ export default function Home() {
           onDoubleClick={() => { setIsGameOpen(true); setIsGameHidden(false) }}
         />
         <MovableIcon
-          icon={'./globus.png'}
-          label="Web"
-          initialPosition={{ x: 25, y: 360 }}
-          onDoubleClick={() => { setIsBrowserOpen(true); setIsBrowserHidden(false) }}
-        />
-        <MovableIcon
           icon={'./credits.png'}
           label="Credits"
           initialPosition={{ x: 25, y: 180 }}
@@ -192,6 +203,18 @@ export default function Home() {
           label="music"
           initialPosition={{ x: 25, y: 280 }}
           onDoubleClick={() => { setIsMusicFolderOpen(true); setIsMusicFolderHidden(false) }}
+        />
+        <MovableIcon
+          icon={'./folder.png'}
+          label="photos"
+          initialPosition={{ x: 95, y: 280 }}
+          onDoubleClick={() => { setIsPicturesFolderOpen(true); setIsPicturesFolderHidden(false) }}
+        />
+        <MovableIcon
+          icon={'./globus.png'}
+          label="Web"
+          initialPosition={{ x: 25, y: 360 }}
+          onDoubleClick={() => { setIsBrowserOpen(true); setIsBrowserHidden(false) }}
         />
       </div>
     </main>
