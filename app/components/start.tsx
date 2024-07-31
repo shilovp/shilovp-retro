@@ -24,13 +24,15 @@ interface StartProps {
     showVideoPlayerIcon: boolean;
     isVideoPlayerHidden: boolean;
     showPicturesFolderIcon: boolean;
-    isPicturesFolderrHidden: boolean;
+    isPicturesFolderHidden: boolean;
+    showPictureViewerIcon: boolean;
+    isPictureViewerHidden: boolean;
 }
 
 const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden, isSettingHidden, showSettingsIcon,
     showMusicPlayerIcon, isMusicPlayerHidden, showCreditsIcon, isCreditsHidden, showMusicFolderIcon, isMusicFolderHidden,
     showGameIcon, isGameHidden, isBrowserHidden, showBrowserIcon, showReaderIcon, isReaderHidden,
-    showVideoPlayerIcon, isVideoPlayerHidden, showPicturesFolderIcon, isPicturesFolderrHidden
+    showVideoPlayerIcon, isVideoPlayerHidden, showPicturesFolderIcon, isPicturesFolderHidden, isPictureViewerHidden, showPictureViewerIcon
 }) => {
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
     const [isOpen, setIsOpen] = useState(false);
@@ -149,13 +151,31 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                 {
                     showPicturesFolderIcon ? (
                         <div
-                            className={`${isPicturesFolderrHidden ? "cursor-pointer" : "cursor-auto"} ${isPicturesFolderrHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            className={`${isPicturesFolderHidden ? "cursor-pointer" : "cursor-auto"} ${isPicturesFolderHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
                             onClick={() => {
-                                if (!isPicturesFolderrHidden) { return } else { onMenuClick('picturesFolder') }
+                                if (!isPicturesFolderHidden) { return } else { onMenuClick('picturesFolder') }
                             }}>
                             <img src="../folder.png" width={20} height={20} alt="picturesFolder" />
                             {
-                                isPicturesFolderrHidden ? (
+                                isPicturesFolderHidden ? (
+                                    <span className='absolute dot-fix text-orange-700'>.</span>
+                                ) : ('')
+                            }
+                        </div>
+                    ) : (
+                        ''
+                    )
+                }
+                {
+                    showPictureViewerIcon ? (
+                        <div
+                            className={`${isPictureViewerHidden ? "cursor-pointer" : "cursor-auto"} ${isPictureViewerHidden ? "opacity-60" : "opacity-100"} relative h-5 w-5 bg-opacity-0 rounded-full flex place-content-center place-items-center text-white transition-transform`}
+                            onClick={() => {
+                                if (!isPictureViewerHidden) { return } else { onMenuClick('pictureViewer') }
+                            }}>
+                            <img src="../picture.png" width={20} height={20} alt="picture viewer" />
+                            {
+                                isPictureViewerHidden ? (
                                     <span className='absolute dot-fix text-orange-700'>.</span>
                                 ) : ('')
                             }

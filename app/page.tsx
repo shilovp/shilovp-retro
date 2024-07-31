@@ -12,6 +12,7 @@ import Browser from "./components/browser";
 import Reader from "./components/reader";
 import VideoPlayer from "./components/windows/videoPlayer";
 import PicturesFolder from "./components/windows/picturesFolder";
+import PictureViewer from "./components/windows/pictureViewer";
 
 export default function Home() {
 
@@ -28,6 +29,7 @@ export default function Home() {
   const [isGameOpen, setIsGameOpen] = useState(false);
   const [isGameHidden, setIsGameHidden] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
+  const [currentPicture, setCurrentPicture] = useState(0);
   const [isBrowserHidden, setIsBrowserHidden] = useState(false);
   const [isBrowserOpen, setIsBrowserOpen] = useState(false);
   const [isReaderHidden, setIsReaderHidden] = useState(false);
@@ -36,10 +38,16 @@ export default function Home() {
   const [isVideoPlayerOpen, setIsVideoPlayerOpen] = useState(false);
   const [isPicturesFolderHidden, setIsPicturesFolderHidden] = useState(false);
   const [isPicturesFolderOpen, setIsPicturesFolderOpen] = useState(false);
+  const [isPictureViewerHidden, setIsPictureViewerHidden] = useState(false);
+  const [isPictureViewerOpen, setIsPictureViewerOpen] = useState(false);
 
   useEffect(() => {
     setCurrentTrack(currentTrack);
   }, [currentTrack]);
+
+  useEffect(() => {
+    setCurrentPicture(currentPicture);
+  }, [currentPicture]);
 
   const onStartMenuClick = (menu: string) => {
     if (menu === 'about') {
@@ -82,6 +90,10 @@ export default function Home() {
       setIsPicturesFolderOpen(true);
       setIsPicturesFolderHidden(false);
     }
+    if (menu === 'pictureViewer') {
+      setIsPictureViewerOpen(true);
+      setIsPictureViewerHidden(false);
+    }
   }
 
   return (
@@ -93,7 +105,7 @@ export default function Home() {
         showGameIcon={isGameOpen} isGameHidden={isGameHidden} isBrowserHidden={isBrowserHidden} showBrowserIcon={isBrowserOpen}
         showReaderIcon={isReaderOpen} isReaderHidden={isReaderHidden}
         showVideoPlayerIcon={isVideoPlayerOpen} isVideoPlayerHidden={isVideoPlayerHidden}
-        showPicturesFolderIcon={isPicturesFolderOpen} isPicturesFolderrHidden={isPicturesFolderHidden} />
+        showPicturesFolderIcon={isPicturesFolderOpen} isPicturesFolderHidden={isPicturesFolderHidden} showPictureViewerIcon={isPictureViewerOpen} isPictureViewerHidden={isPictureViewerHidden} />
       <div className="bg-[url('./poolside-fm-pacific-breeze.jpg')] bg-center h-full">
         {isAboutOpen && !isAboutHidden ? (
           <DraggableWindow title="About" onClose={() => { setIsAboutOpen(false); setIsAboutHidden(false) }} onHide={() => setIsAboutHidden(true)}>
@@ -137,6 +149,8 @@ export default function Home() {
           <DraggableWindow title="Desktop/photos" onClose={() => { setIsPicturesFolderOpen(false); setIsPicturesFolderHidden(false) }} onHide={() => setIsPicturesFolderHidden(true)}>
             <PicturesFolder onDoubleClick={(imgNumber) => {
               console.log("imgnumber: ", imgNumber);
+              setCurrentPicture(imgNumber);
+              setIsPictureViewerOpen(true);
             }} />
           </DraggableWindow>
         ) : (
@@ -147,6 +161,13 @@ export default function Home() {
           // </DraggablePlayer>
           <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Player">
             <MusicPlayer trackNumber={currentTrack} />
+          </DraggableWindow>
+        ) : (
+          ''
+        )}
+        {isPictureViewerOpen && !isPictureViewerHidden ? (
+          <DraggableWindow onHide={() => { setIsPictureViewerHidden(true) }} onClose={() => { setIsPictureViewerOpen(false); }} title="Picture Viewer">
+            <PictureViewer pictureNumber={currentPicture} />
           </DraggableWindow>
         ) : (
           ''
