@@ -21,9 +21,6 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ trackNumber }) => {
     const [isMuted, setIsMuted] = useState(false);
 
     const audioFiles = [
-        // '../../sample.mp3',
-        // '../../sample2.mp3',
-        // '../../sample3.mp3',
         '../../01. Ground Theme.mp3',
         '../../02. Underground Theme.mp3',
         '../../03. Underwater Theme.mp3',
