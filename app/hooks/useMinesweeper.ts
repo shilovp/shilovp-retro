@@ -53,6 +53,9 @@ export const useMinesweeper = (rows: number, cols: number, mines: number) => {
       }
     }
 
+    setIsGameOver(false);
+    setIsGameWon(false);
+
     setGrid(grid);
   };
 
