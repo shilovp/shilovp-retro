@@ -36,8 +36,8 @@ const PictureViewer: React.FC<PictureViewerProps> = ({ pictureNumber }) => {
 
     return (
         <div className="p-1 border border-black bg-gray-300 select-none">
-            <div className="w-full">
-                <img ref={imgTagRef} alt="img"/>
+            <div className="flex justify-center">
+                <img ref={imgTagRef} alt="img" className="max-h-96 pointer-events-none" />
             </div>
         </div>
     );

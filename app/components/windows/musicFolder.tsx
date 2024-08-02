@@ -8,37 +8,37 @@ const MusicFolder: React.FC<MusicFolderProps> = ({ onDoubleClick }) => {
             <div className="flex flex-wrap gap-8">
                 <div className="flex flex-col cursor-pointer"
                     onDoubleClick={() => { onDoubleClick(0) }}>
-                    <img src="../../audio.png" width={35} alt="" />
+                    <img src="../../audio.png" width={35} alt="mp3" className="pointer-events-none" />
                     <p className="text-xs">1.mp3</p>
                 </div>
                 <div className="flex flex-col cursor-pointer"
                     onDoubleClick={() => { onDoubleClick(1) }}>
-                    <img src="../../audio.png" width={35} alt="" />
+                    <img src="../../audio.png" width={35} alt="mp3" className="pointer-events-none" />
                     <p className="text-xs">2.mp3</p>
                 </div>
                 <div className="flex flex-col cursor-pointer"
                     onDoubleClick={() => { onDoubleClick(2) }}>
-                    <img src="../../audio.png" width={35} alt="" />
+                    <img src="../../audio.png" width={35} alt="mp3" className="pointer-events-none" />
                     <p className="text-xs">3.mp3</p>
                 </div>
                 <div className="flex flex-col cursor-pointer"
                     onDoubleClick={() => { onDoubleClick(3) }}>
-                    <img src="../../audio.png" width={35} alt="" />
+                    <img src="../../audio.png" width={35} alt="mp3" className="pointer-events-none" />
                     <p className="text-xs">4.mp3</p>
                 </div>
                 <div className="flex flex-col cursor-pointer"
                     onDoubleClick={() => { onDoubleClick(4) }}>
-                    <img src="../../audio.png" width={35} alt="" />
+                    <img src="../../audio.png" width={35} alt="mp3" className="pointer-events-none" />
                     <p className="text-xs">5.mp3</p>
                 </div>
                 <div className="flex flex-col cursor-pointer"
                     onDoubleClick={() => { onDoubleClick(5) }}>
-                    <img src="../../audio.png" width={35} alt="" />
+                    <img src="../../audio.png" width={35} alt="mp3" className="pointer-events-none" />
                     <p className="text-xs">6.mp3</p>
                 </div>
                 <div className="flex flex-col cursor-pointer"
                     onDoubleClick={() => { onDoubleClick(6) }}>
-                    <img src="../../audio.png" width={35} alt="" />
+                    <img src="../../audio.png" width={35} alt="mp3" className="pointer-events-none" />
                     <p className="text-xs">7.mp3</p>
                 </div>
             </div>

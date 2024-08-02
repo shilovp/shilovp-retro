@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { FaPlay, FaPause, FaForward, FaBackward, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import * as mm from 'music-metadata-browser';
 
-// TODO: implement next/previous tracks functionality
-
 interface MusicPlayerProps {
     trackNumber: number;
 }
