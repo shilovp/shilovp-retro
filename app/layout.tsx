@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={chicagoFont.variable}>{children}</body>
+      <body
+        className={`${chicagoFont.variable} overflow-hidden`}
+      >{children}</body>
     </html>
   );
 }

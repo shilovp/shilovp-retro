@@ -40,6 +40,7 @@ export default function Home() {
   const [isPicturesFolderOpen, setIsPicturesFolderOpen] = useState(false);
   const [isPictureViewerHidden, setIsPictureViewerHidden] = useState(false);
   const [isPictureViewerOpen, setIsPictureViewerOpen] = useState(false);
+  // const [highestZIndex, setHighestZIndex] = useState(1);
 
   useEffect(() => {
     setCurrentTrack(currentTrack);
@@ -122,7 +123,7 @@ export default function Home() {
           ''
         )}
         {isCreditsOpen && !isCreditsHidden ? (
-          <DraggableWindow title="Credits" onClose={() => { setIsCreditsOpen(false); setIsCreditsHidden(false) }} onHide={() => setIsCreditsHidden(true)}>
+          <DraggableWindow title="Credits" onClose={() => { setIsCreditsOpen(false); setIsCreditsHidden(false); }} onHide={() => setIsCreditsHidden(true)}>
             <Credits />
           </DraggableWindow>
         ) : (
@@ -157,8 +158,6 @@ export default function Home() {
           ''
         )}
         {isMusicPlayerOpen && !isMusicPlayerHidden ? (
-          // <DraggablePlayer onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }}>
-          // </DraggablePlayer>
           <DraggableWindow onHide={() => { setIsMusicPlayerHidden(true) }} onClose={() => { setIsMusicPlayerOpen(false); }} title="Player">
             <MusicPlayer trackNumber={currentTrack} />
           </DraggableWindow>
@@ -211,7 +210,7 @@ export default function Home() {
           icon={'./credits.png'}
           label="Credits"
           initialPosition={{ x: 25, y: 180 }}
-          onDoubleClick={() => { setIsCreditsOpen(true); setIsCreditsHidden(false) }}
+          onDoubleClick={() => { setIsCreditsOpen(true); setIsCreditsHidden(false); }}
         />
         <MovableIcon
           icon={'./cv.png'}
@@ -223,7 +222,7 @@ export default function Home() {
           icon={'./folder.png'}
           label="music"
           initialPosition={{ x: 25, y: 280 }}
-          onDoubleClick={() => { setIsMusicFolderOpen(true); setIsMusicFolderHidden(false) }}
+          onDoubleClick={() => { setIsMusicFolderOpen(true); setIsMusicFolderHidden(false); }}
         />
         <MovableIcon
           icon={'./folder.png'}

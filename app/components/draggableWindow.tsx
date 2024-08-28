@@ -3,12 +3,13 @@ import { useRef, useState, useEffect } from 'react';
 
 interface DraggableWindowProps {
   title: string;
+  zIndex?: number;
   onClose: () => void;
   onHide: () => void;
   children: React.ReactNode;
 }
 
-const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, onClose, onHide, children }) => {
+const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, zIndex, onClose, onHide, children }) => {
   const windowRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -72,7 +73,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, onClose, onHid
     <div
       ref={windowRef}
       className="fixed top-20 left-20 w-96 background-fix shadow-lg select-none"
-      style={{ zIndex: 1000 }}
+      style={{ zIndex: zIndex || 1 }}
     >
       <div
         className="background-fix text-black flex justify-between items-center cursor-move border border-black px-1 h-6"
@@ -85,6 +86,7 @@ const DraggableWindow: React.FC<DraggableWindowProps> = ({ title, onClose, onHid
           <button onClick={onHide} className="text-black text-xs border border-black w-4 h-4 hover:bg-black hover:text-white hover:border-white">
             <p>_</p>
           </button>
+          <div className="p">{zIndex}</div>
         </div>
         <div className='text-gray-400 text-opacity-50'>
           <span>|</span>
