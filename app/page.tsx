@@ -131,7 +131,7 @@ export default function Home() {
         )}
         {isVideoPlayerOpen && !isVideoPlayerHidden ? (
           <DraggableWindow title="Video Player" onClose={() => { setIsVideoPlayerOpen(false); setIsVideoPlayerHidden(false) }} onHide={() => setIsVideoPlayerHidden(true)}>
-            <VideoPlayer videoUrl="https://youtu.be/-QjxOwE3FsA?list=PLiAIwi_8SZBxyw-puUEx74R3nZseQUMQC" />
+            <VideoPlayer videoUrl="../vid.mp4" />
           </DraggableWindow>
         ) : (
           ''

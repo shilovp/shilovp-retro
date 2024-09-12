@@ -56,7 +56,8 @@ const VideoPlayer: React.FC<{ videoUrl: string }> = ({ videoUrl }) => {
         <video
           ref={videoRef}
           src={videoUrl}
-          className="max-w-lg h-full "
+          crossOrigin='anonymous'
+          className="w-full h-full"
           onTimeUpdate={handleTimeUpdate}
         />
         <div className="absolute inset-0 flex items-center justify-center ">
