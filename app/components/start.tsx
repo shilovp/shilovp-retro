@@ -111,12 +111,12 @@ const Start: React.FC<StartProps> = ({ onMenuClick, showAboutIcon, isAboutHidden
                                     About
                                 </a>
                             </li>
-                            <li>
+                            {/* <li>
                                 <a href="#" className="hover:bg-black hover:text-white block py-1 px-4 text-black text-left border-b border-black"
                                     onClick={() => onMenuClick('settings')}>
                                     Settings
                                 </a>
-                            </li>
+                            </li> */}
                             <li>
                                 <a href="#" className="hover:bg-black hover:text-white block py-1 px-4 text-black text-left"
                                     onClick={() => onMenuClick('game')}>
